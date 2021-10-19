@@ -13,6 +13,7 @@ class Duck(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
     user = db.relationship("User", back_populates="ducks")
+    comments = db.relationship("Comment", back_populates="duck")
 
     def to_dict(self):
         return {

@@ -14,5 +14,5 @@ def seed_ducks():
 
 
 def undo_ducks():
-    db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE ducks RESTART IDENTITY CASCADE;')
     db.session.commit()

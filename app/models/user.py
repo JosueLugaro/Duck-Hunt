@@ -17,6 +17,7 @@ class User(db.Model, UserMixin):
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
     ducks = db.relationship("Duck", back_populates="user")
+    comments = db.relationship("Comment", back_populates="user")
 
     @property
     def password(self):
