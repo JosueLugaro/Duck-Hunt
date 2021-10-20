@@ -2,6 +2,7 @@ from .db import db
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from .comment import Comment
 
 
 class User(db.Model, UserMixin):
@@ -18,6 +19,11 @@ class User(db.Model, UserMixin):
 
     ducks = db.relationship("Duck", back_populates="user")
     comments = db.relationship("Comment", back_populates="user")
+
+    def comment(self, post, description):
+        comment = Comment(user_id=self.id, post_id=post.id, description=description)
+        db.session.add(comment)
+        db.session.commit()
 
     @property
     def password(self):
