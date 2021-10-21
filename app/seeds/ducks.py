@@ -9,7 +9,39 @@ def seed_ducks():
         description="Insanely Beautiful duck, obvi"
     )
 
+    seed2 = Duck(
+        user_id=2,
+        name="Awesome duck",
+        image="https://picsum.photos/200/300",
+        description="Insanely Beautiful duck, obvi"
+    )
+
+    seed3 = Duck(
+        user_id=2,
+        name="Awesome duck",
+        image="https://picsum.photos/200",
+        description="Insanely Beautiful duck, obvi"
+    )
+
+    seed4 = Duck(
+        user_id=2,
+        name="Awesome duck",
+        image="https://picsum.photos/300/200",
+        description="Insanely Beautiful duck, obvi"
+    )
+
+    seed5 = Duck(
+        user_id=2,
+        name="Awesome duck",
+        image="https://picsum.photos/300",
+        description="Insanely Beautiful duck, obvi"
+    )
+
     db.session.add(seed1)
+    db.session.add(seed2)
+    db.session.add(seed3)
+    db.session.add(seed4)
+    db.session.add(seed5)
     db.session.commit()
 
 
