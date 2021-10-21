@@ -1,12 +1,23 @@
 .nav-container {
     display: flex;
     justify-content: space-between;
+    padding: 20px 32px;
+    box-shadow: 0 0 1px 1px rgb(33 41 63 / 10%);
+    top: 0;
+    position: sticky;
+    z-index: 20;
 }
 
 .nav-options-container {
     position: relative;
+    height: 100%;
 }
 
 .action-container {
     position: absolute;
+}
+
+.Logo-container {
+    height: 40px;
+    width: 40px;
 }
