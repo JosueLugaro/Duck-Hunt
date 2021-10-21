@@ -12,9 +12,7 @@ duck_routes = Blueprint('duck', __name__)
 def get_all_ducks():
     ducks = Duck.query.filter(Duck.user_id != current_user.id).all()
 
-    return {
-        "posts": [duck.to_dict() for duck in ducks]
-    }
+    return {"ducks": [duck.to_dict() for duck in ducks]}
 
 #Get a specific post
 @duck_routes.route('/<int:duck_id>')
