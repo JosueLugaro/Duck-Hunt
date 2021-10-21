@@ -54,7 +54,8 @@ def new_duck():
         new_duck = Duck(
             user_id=current_user.id,
             name=form.data["name"],
-            description=form.data["description"]
+            description=form.data["description"],
+            image=url
         )
 
         db.session.add(new_duck)

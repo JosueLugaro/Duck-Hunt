@@ -24,9 +24,9 @@ function App() {
     return null;
   }
 
+  // REMEMBER TO ADD THE NAV BAR COMPONENT TO THE ROUTES THAT NEED IT
   return (
     <BrowserRouter>
-      <NavBar />
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />
@@ -38,9 +38,11 @@ function App() {
           <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
+          <NavBar />
           <User />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
+          <NavBar />
           <h1>My Home Page</h1>
         </ProtectedRoute>
       </Switch>
