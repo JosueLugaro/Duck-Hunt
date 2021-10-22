@@ -7,16 +7,15 @@ import './Home.css'
 
 function Home() {
     let dispatch = useDispatch();
-    const { toggleModal, setModalContent } = useModal();
-    const [loaded, setLoaded] = useState(false);
 
+    const { toggleModal, setModalContent } = useModal();
+    // const [loaded, setLoaded] = useState(false);
     let posts = useSelector(state => state.Ducks.allDucks)
+    // let posts = ducks.allDucks;
 
     useEffect(() => {
-        (async () => {
-            await dispatch(getAllDucksThunk());
-        })()
-        setLoaded(true);
+        const test = dispatch(getAllDucksThunk());
+        // setLoaded(true);
     }, [dispatch])
 
     function openPostDetailsModal(postId) {
@@ -26,31 +25,33 @@ function Home() {
         toggleModal();
     }
 
-    if(!loaded) {
-        console.log("<-------------------------------------")
-        return null
-    } else {
-        console.log("IN THE ELSE")
-    }
+    // if(!loaded) {
+    //     console.log("<-------------------------------------")
+    //     return null
+    // } else {
+    //     console.log("IN THE ELSE")
+    // }
 
     return (
         <>
-            <div className="posts-container">
-                {Object.keys(posts).map(post => (
-                    <div className="post-container">
-                        <div className="post" onClick={() => openPostDetailsModal(posts[post].id)}>
-                            <div className="post-image-container">
-                                <img src={posts[post].image} className="post-image" alt="beautiful duck"/>
-                            </div>
-                            <div className="post-text">
-                                <h2>{posts[post].name}</h2>
-                                <p>{posts[post].description}</p>
-                                <div className="comment-count">Comment count</div>
+            {posts && (
+                <div className="posts-container">
+                    {Object.keys(posts).map(post => (
+                        <div className="post-container">
+                            <div className="post" onClick={() => openPostDetailsModal(posts[post].id)}>
+                                <div className="post-image-container">
+                                    <img src={posts[post].image} className="post-image" alt="beautiful duck"/>
+                                </div>
+                                <div className="post-text">
+                                    <h2>{posts[post].name}</h2>
+                                    <p>{posts[post].description}</p>
+                                    <div className="comment-count">Comment count</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
-            </div>
+                    ))}
+                </div>
+            )}
         </>
      );
 }
