@@ -2,6 +2,7 @@ import React from 'react';
 import './Modal.css';
 import ReactDom from 'react-dom';
 import { useModal } from '../context/Modal';
+import './Modal.css';
 
 export default function Modal() {
     const { isOpen, closeModal, modalContent } = useModal();
