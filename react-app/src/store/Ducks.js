@@ -14,17 +14,16 @@ export const getAllDucksThunk = () => async (dispatch) => {
     }
 }
 
-let initialState = { allDucks: [], currentDuck: []}
+let initialState = { allDucks: {}, currentDuck: {}}
 
 export default function DucksReducer(state = initialState, action) {
     let newState = {...state}
     switch(action.type) {
         case GET_All_DUCKS:
-            newState.allDucks =  action.payload
+            action.payload.forEach(post => newState.allDucks[post.id] = post)
             newState.currentDuck = []
             return newState
         default:
             return state
     }
-
 }
