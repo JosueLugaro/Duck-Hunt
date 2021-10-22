@@ -9,9 +9,14 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import Home from './components/Home'
 import { authenticate } from './store/session';
+import { useModal } from './context/Modal';
+import Modal from './components/Modal';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
+  const { closeModal } = useModal();
   const [loaded, setLoaded] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,6 +26,14 @@ function App() {
     })();
   }, [dispatch]);
 
+  useEffect(() => {
+    (() => {
+      window.onpopstate = () => {
+        closeModal();
+      };
+    })()
+  })
+
   if (!loaded) {
     return null;
   }
@@ -28,6 +41,8 @@ function App() {
   // REMEMBER TO ADD THE NAV BAR COMPONENT TO THE ROUTES THAT NEED IT
   return (
     <BrowserRouter>
+      <ScrollToTop />
+      <Modal open={isOpen} onClose={() => setIsOpen(false)}></Modal>
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />
