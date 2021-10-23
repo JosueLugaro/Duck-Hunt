@@ -2,12 +2,22 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useModal } from '../context/Modal';
 import LogoutButton from './auth/LogoutButton';
+import NewPostForm from './NewPostForm';
 import './NavBar.css'
 
 const NavBar = () => {
   const [isClosed, setIsClosed] = useState('')
+  const { toggleModal, setModalContent } = useModal();
   let user = useSelector(state => state.session.user);
+
+  function openNewPostFormModal() {
+    setModalContent((
+        <NewPostForm />
+    ))
+    toggleModal();
+}
 
   return (
     <nav className="nav-container">
@@ -22,7 +32,7 @@ const NavBar = () => {
           </div>
         </div>
         <div className="right-side-nav">
-          <div className="new-post-container">
+          <div className="new-post-container" onClick={() => openNewPostFormModal()}>
             <p className="new-post">New Post</p>
           </div>
           <div className="nav-options-container" onMouseOver={() => setIsClosed('hovered')} onMouseLeave={() => setIsClosed('')}>
