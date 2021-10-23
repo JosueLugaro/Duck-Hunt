@@ -13,6 +13,31 @@
     width: 40px;
 }
 
+.right-side-nav {
+    display: flex;
+    gap: 20px;
+}
+
+.new-post-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #8e24aa;
+    border-radius: 5px;
+    padding: 1px 5px;
+    cursor: pointer;
+    background-color: #8e24aa;
+}
+
+.new-post-container:hover {
+    transform: scale(1.02);
+}
+
+.new-post {
+    color: white;
+    font-weight: 600;
+}
+
 .nav-options-container {
     display: flex;
     justify-content: center;
