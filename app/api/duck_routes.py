@@ -10,7 +10,7 @@ duck_routes = Blueprint('duck', __name__)
 @duck_routes.route('/')
 @login_required
 def get_all_ducks():
-    ducks = Duck.query.filter(Duck.user_id != current_user.id).all()
+    ducks = Duck.query.all()
 
     return {"ducks": [duck.to_dict() for duck in ducks]}
 
@@ -33,7 +33,7 @@ def new_duck():
 
     image = request.files["image"]
 
-    if not allowed_file(content.filename):
+    if not allowed_file(image.filename):
         return {"errors": ["That file type is not permitted"]}, 400
 
     image.filename = get_unique_filename(image.filename)
@@ -45,7 +45,7 @@ def new_duck():
 
     url = upload["url"]
 
-    duck = DuckForm()
+    form = DuckForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():

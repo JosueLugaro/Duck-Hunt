@@ -1,5 +1,6 @@
-let GET_All_DUCKS = 'ducks/GET_ALL_DUCKS'
+let GET_All_DUCKS = 'ducks/GET_ALL_DUCKS';
 let GET_CURRENT_DUCK = 'ducks/GET_CURRENT_DUCK';
+let NEW_DUCK = 'ducks/NEW_DUCK';
 
 const setAllDucks = (posts) => ({
     type: GET_All_DUCKS,
@@ -11,10 +12,16 @@ const setCurrentDuck = (postId) => ({
     payload: postId
 })
 
+const postNewDuck = (postData) => ({
+    type: NEW_DUCK,
+    payload: postData
+})
+
 export const getAllDucksThunk = () => async (dispatch) => {
     let response = await fetch('/api/ducks/');
     if (response.ok) {
         let data = await response.json();
+        console.log(data.ducks);
         dispatch(setAllDucks(data.ducks));
         return data
     }
@@ -22,6 +29,26 @@ export const getAllDucksThunk = () => async (dispatch) => {
 
 export const setCurrentDuckThunk = (postId) => async (dispatch) => {
     return dispatch(setCurrentDuck(postId))
+}
+
+export const addNewDuckThunk = (postData) => async (dispatch) => {
+    let response = await fetch('/api/ducks/new',{
+        method: 'POST',
+        body: postData
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(postNewDuck(data));
+        return null;
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors
+        }
+    }
+
+    return ['An error occured']
 }
 
 let initialState = { allDucks: null, currentDuck: null}
