@@ -8,16 +8,56 @@
     z-index: 20;
 }
 
+.Logo-container {
+    height: 40px;
+    width: 40px;
+}
+
 .nav-options-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
     height: 100%;
 }
 
-.action-container {
-    position: absolute;
+.user-profile-pic-container {
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 50%;
 }
 
-.Logo-container {
-    height: 40px;
-    width: 40px;
+.user-profile-pic {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.action-container {
+    position: absolute;
+    background-color: white;
+    padding: 15px;
+    top: 100%;
+    right: 50%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+    transform: translateY(10px);
+    gap: 10px;
+    width: 150px;
+}
+
+.dropdown-option a {
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+    font-size: 16px;
+    color: #4b587c;
+    text-decoration: none;
+}
+
+.action-container.hovered {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0px);
 }

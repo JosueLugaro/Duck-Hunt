@@ -1,11 +1,13 @@
 
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import LogoutButton from './auth/LogoutButton';
 import './NavBar.css'
 
 const NavBar = () => {
-  const [isOpen, setIsOpen] = useState(true)
+  const [isClosed, setIsClosed] = useState('')
+  let user = useSelector(state => state.session.user);
 
   return (
     <nav className="nav-container">
@@ -17,11 +19,11 @@ const NavBar = () => {
             </svg>
           </NavLink>
         </div>
-        <div className="nav-options-container" onMouseOver={() => setIsOpen(false)} onMouseLeave={() => setIsOpen(true)}>
-
-            Profile Pic
-
-            <div className="action-container" hidden={isOpen}>
+        <div className="nav-options-container" onMouseOver={() => setIsClosed('hovered')} onMouseLeave={() => setIsClosed('')}>
+            <div className="user-profile-pic-container">
+              <img src={user.profile_pic} className="user-profile-pic" alt="user-profile-pic"/>
+            </div>
+            <div className={`action-container ${isClosed}`}>
               <div className="dropdown-option">
                 <NavLink to='/' exact={true} activeClassName='active'>
                   Home

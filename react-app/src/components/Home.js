@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllDucksThunk } from '../store/Ducks';
 import { useModal } from '../context/Modal';
@@ -14,7 +14,7 @@ function Home() {
     // let posts = ducks.allDucks;
 
     useEffect(() => {
-        const test = dispatch(getAllDucksThunk());
+        dispatch(getAllDucksThunk());
         // setLoaded(true);
     }, [dispatch])
 
