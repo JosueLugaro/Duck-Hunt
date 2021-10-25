@@ -70,6 +70,14 @@
     color: #4b587c;
 }
 
+.post-options-icon {
+    opacity: 0;
+}
+
+.post-options-icon.mouse-over {
+    opacity: 1;
+}
+
 .comment-count {
     margin-top: 12px;
 }
