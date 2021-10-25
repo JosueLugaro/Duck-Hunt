@@ -43,7 +43,7 @@ function Home() {
                             <div
                                 className="post"
                                 onClick={() => openPostDetailsModal(posts[post].id)}
-                                onMouseOver={(e) => currentUser.id === posts[post].user_id && e.target.id == post ? setMouseOver('mouse-over') : null}
+                                onMouseOver={(e) => currentUser.id === posts[post].user_id ? setMouseOver('mouse-over') : null}
                                 onMouseLeave={() => currentUser.id === posts[post].user_id ? setMouseOver('') : null}
                             >
                                 <div className="post-image-container">
@@ -55,7 +55,7 @@ function Home() {
                                     <div className="comment-count">Comment count</div>
                                 </div>
                                 <div className="options-icon-container">
-                                    {currentUser.id === posts[post].user_id ? <span class={`material-icons post-options-icon ${mouseOver}`}>more_horiz</span> : null}
+                                    {currentUser.id === posts[post].user_id ? <span className={`material-icons post-options-icon ${mouseOver}`}>more_horiz</span> : null}
                                 </div>
                             </div>
                         </div>

@@ -21,7 +21,6 @@ export const getAllDucksThunk = () => async (dispatch) => {
     let response = await fetch('/api/ducks/');
     if (response.ok) {
         let data = await response.json();
-        console.log(data.ducks);
         dispatch(setAllDucks(data.ducks));
         return data
     }
