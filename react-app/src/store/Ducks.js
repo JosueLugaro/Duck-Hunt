@@ -1,6 +1,7 @@
 let GET_All_DUCKS = 'ducks/GET_ALL_DUCKS';
 let GET_CURRENT_DUCK = 'ducks/GET_CURRENT_DUCK';
 let NEW_DUCK = 'ducks/NEW_DUCK';
+let DELETE_DUCK = 'ducks/DELETE_DUCK';
 
 const setAllDucks = (posts) => ({
     type: GET_All_DUCKS,
@@ -15,6 +16,11 @@ const setCurrentDuck = (postId) => ({
 const postNewDuck = (postData) => ({
     type: NEW_DUCK,
     payload: postData
+})
+
+const deleteDuck = (postId) => ({
+    type: DELETE_DUCK,
+    payload: postId
 })
 
 export const getAllDucksThunk = () => async (dispatch) => {
@@ -50,6 +56,15 @@ export const addNewDuckThunk = (postData) => async (dispatch) => {
     return ['An error occured']
 }
 
+export const deleteDuckThunk = (postId) => async (dispatch) => {
+    let response = await fetch(`/api/ducks/${postId}/delete`);
+
+    if (response.ok) {
+        dispatch(deleteDuck(postId));
+        return "Duck Deleted!"
+    }
+}
+
 let initialState = { allDucks: null, currentDuck: null}
     // let initialState = {};
 
@@ -63,10 +78,14 @@ export default function DucksReducer(state = initialState, action) {
             // newState["allDucks"] = {}
             // action.payload.forEach(post => newState["allDucks"][post.id] = post)
             // newState["currentDuck"] = []
-            return newState;
+            return newState
         case GET_CURRENT_DUCK:
             newState.currentDuck = newState.allDucks[action.payload]
-            return newState;
+            return newState
+        case DELETE_DUCK:
+            delete newState.allDucks[action.payload]
+            newState.currentDuck = []
+            return newState
         default:
             return state
     }
