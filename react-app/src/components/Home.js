@@ -8,12 +8,16 @@ function Home() {
     let dispatch = useDispatch();
 
     // const [loaded, setLoaded] = useState(false);
-    let posts = useSelector(state => state.Ducks.allDucks);
+    let posts = useSelector(state => Object.values(state.Ducks.allDucks));
 
-    useEffect(() => {
-        dispatch(getAllDucksThunk());
-        // setLoaded(true);
-    }, [dispatch])
+    // useEffect(() => {
+    //     (async () => {
+    //         await dispatch(getAllDucksThunk());
+    //     })()
+    //     setLoaded(true);
+    // }, [dispatch])
+
+    console.log(posts);
 
     // if(!loaded) {
     //     console.log("<-------------------------------------")
@@ -26,8 +30,8 @@ function Home() {
         <>
             {posts && (
                 <div className="posts-container">
-                    {Object.keys(posts).map(post => (
-                        <Post postId={post}/>
+                    {posts.map(post => (
+                        <Post post={post}/>
                     ))}
                 </div>
             )}

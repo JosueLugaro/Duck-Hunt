@@ -5,7 +5,7 @@ import DeletionConfirmation from './DeletionConfirmation';
 import { useModal } from '../context/Modal';
 import './Post.css';
 
-export default function Post({ postId }) {
+export default function Post({ post }) {
     const [isOpen, setIsOpen] = useState('');
     const [mouseOver, setMouseOver] = useState('');
     const { toggleModal, setModalContent } = useModal();
@@ -31,16 +31,16 @@ export default function Post({ postId }) {
         <div className="post-container">
             <div
                 className="post"
-                onClick={() => openPostDetailsModal(posts[postId].id)}
-                onMouseOver={() => currentUser.id === posts[postId].user_id ? setMouseOver('mouse-over') : null}
-                onMouseLeave={() => currentUser.id === posts[postId].user_id ? setMouseOver('') : null}
+                onClick={() => openPostDetailsModal(post.id)}
+                onMouseOver={() => currentUser.id === post.user_id ? setMouseOver('mouse-over') : null}
+                onMouseLeave={() => currentUser.id === post.user_id ? setMouseOver('') : null}
             >
                 <div className="post-image-container">
-                    <img src={posts[postId].image} className="post-image" alt="beautiful duck"/>
+                    {post?.image && <img src={post.image} className="post-image" alt="beautiful duck"/>}
                 </div>
                 <div className="post-text">
-                    <h2>{posts[postId].name}</h2>
-                    <p>{posts[postId].description}</p>
+                    <h2>{post.name}</h2>
+                    <p>{post.description}</p>
                     <div className="comment-count">Comment count</div>
                 </div>
                 <div className="options-container" onMouseLeave={() => setIsOpen('')}>
@@ -51,7 +51,7 @@ export default function Post({ postId }) {
                             return isOpen ? setIsOpen('') : setIsOpen('open')
                         }}
                     >
-                        {currentUser.id === posts[postId].user_id ? <span className={`material-icons post-options-icon ${mouseOver}`}>more_horiz</span> : null}
+                        {currentUser.id === post.user_id ? <span className={`material-icons post-options-icon ${mouseOver}`}>more_horiz</span> : null}
                     </div>
                     <div className={`dropdown-options ${isOpen}`}>
                         <div className="post-option">
@@ -61,7 +61,7 @@ export default function Post({ postId }) {
                             className="post-option"
                             onClick={(e) => {
                                 e.stopPropagation()
-                                return openDeletionConfirmationModal(postId)
+                                return openDeletionConfirmationModal(post.id)
                             }}
                         >
                             <p>Delete</p>

@@ -57,10 +57,15 @@ export const addNewDuckThunk = (postData) => async (dispatch) => {
 }
 
 export const deleteDuckThunk = (postId) => async (dispatch) => {
+    console.log("BEFORE RESPONSE")
     let response = await fetch(`/api/ducks/${postId}/delete`);
+    console.log("AFTER RESPONSE")
 
     if (response.ok) {
+        // let data = await response.json();
+        console.log("IN CONDITIONAL")
         dispatch(deleteDuck(postId));
+        // dispatch(setAllDucks(data.ducks))
         return "Duck Deleted!"
     }
 }
@@ -73,7 +78,9 @@ export default function DucksReducer(state = initialState, action) {
     switch(action.type) {
         case GET_All_DUCKS:
             newState.allDucks = {};
+            console.log(action.payload);
             action.payload.forEach(post => newState.allDucks[post.id] = post)
+            console.log(newState.allDucks, "in get all, newState.allDucks <-------------------------------------------")
             newState.currentDuck = []
             // newState["allDucks"] = {}
             // action.payload.forEach(post => newState["allDucks"][post.id] = post)
@@ -83,7 +90,11 @@ export default function DucksReducer(state = initialState, action) {
             newState.currentDuck = newState.allDucks[action.payload]
             return newState
         case DELETE_DUCK:
+            console.log(action.payload, "action.payload <---------------------------------------------")
+            console.log(newState, "newState <---------------------------------------------")
+            console.log(newState.allDucks[action.payload], "target <---------------------------------------------")
             delete newState.allDucks[action.payload]
+            console.log(newState.allDucks[action.payload], "after delete target <---------------------------------------------")
             newState.currentDuck = []
             return newState
         default:
