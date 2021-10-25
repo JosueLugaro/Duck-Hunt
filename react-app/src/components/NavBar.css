@@ -6,6 +6,7 @@
     top: 0;
     position: sticky;
     z-index: 20;
+    background-color: white;
 }
 
 .Logo-container {
