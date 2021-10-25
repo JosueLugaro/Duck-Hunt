@@ -61,3 +61,13 @@ def new_duck():
         return {
             "post": new_duck.to_dict()
         }
+
+# Delete a post
+@duck_routes.route('/<int:duck_id>/delete')
+@login_required
+def delete_duck(duck_id):
+    duck = Duck.query.filter(duck_id == Duck.id).first()
+
+    db.session.delete(duck)
+    db.session.commit()
+    return "Deletion successful!"

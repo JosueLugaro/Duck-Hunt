@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux';
 import PostDetails from './PostDetails';
+import DeletionConfirmation from './DeletionConfirmation';
 import { useModal } from '../context/Modal';
 import './Post.css';
 
@@ -18,6 +19,14 @@ export default function Post({ postId }) {
         ))
         toggleModal();
     }
+
+    function openDeletionConfirmationModal(postId) {
+        setModalContent((
+            <DeletionConfirmation postId={postId}/>
+        ))
+        toggleModal();
+    }
+
     return (
         <div className="post-container">
             <div
@@ -34,7 +43,7 @@ export default function Post({ postId }) {
                     <p>{posts[postId].description}</p>
                     <div className="comment-count">Comment count</div>
                 </div>
-                <div className="options-container">
+                <div className="options-container" onMouseLeave={() => setIsOpen('')}>
                     <div
                         className="options-icon-container"
                         onClick={(e) => {
@@ -44,11 +53,17 @@ export default function Post({ postId }) {
                     >
                         {currentUser.id === posts[postId].user_id ? <span className={`material-icons post-options-icon ${mouseOver}`}>more_horiz</span> : null}
                     </div>
-                    <div className={`dropdown-options ${isOpen}`} onMouseLeave={() => setIsOpen('')}>
+                    <div className={`dropdown-options ${isOpen}`}>
                         <div className="post-option">
                             <p>Edit</p>
                         </div>
-                        <div className="post-option">
+                        <div
+                            className="post-option"
+                            onClick={(e) => {
+                                e.stopPropagation()
+                                return openDeletionConfirmationModal(postId)
+                            }}
+                        >
                             <p>Delete</p>
                         </div>
                     </div>
