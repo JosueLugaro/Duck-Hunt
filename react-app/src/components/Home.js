@@ -1,19 +1,17 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllDucksThunk } from '../store/Ducks';
+import { useSelector } from 'react-redux';
 import Post from './Post';
 import './Home.css'
 
 function Home() {
-    let dispatch = useDispatch();
-
     // const [loaded, setLoaded] = useState(false);
-    let posts = useSelector(state => state.Ducks.allDucks);
+    let posts = useSelector(state => Object.values(state.Ducks.allDucks));
 
-    useEffect(() => {
-        dispatch(getAllDucksThunk());
-        // setLoaded(true);
-    }, [dispatch])
+    // useEffect(() => {
+    //     (async () => {
+    //         await dispatch(getAllDucksThunk());
+    //     })()
+    //     setLoaded(true);
+    // }, [dispatch])
 
     // if(!loaded) {
     //     console.log("<-------------------------------------")
@@ -26,8 +24,8 @@ function Home() {
         <>
             {posts && (
                 <div className="posts-container">
-                    {Object.keys(posts).map(post => (
-                        <Post postId={post}/>
+                    {posts.map(post => (
+                        <Post post={post}/>
                     ))}
                 </div>
             )}

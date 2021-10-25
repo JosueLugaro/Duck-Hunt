@@ -1,4 +1,5 @@
 .post-container {
+    display: flex;
     padding: 24px 0;
 }
 
@@ -64,12 +65,46 @@
     color: #4b587c;
 }
 
+.options-container {
+    position: relative;
+}
+
+.options-icon-container {
+    width: 24px;
+    height: 24px;
+}
+
 .post-options-icon {
     opacity: 0;
+    transition: opacity 0.3s;
 }
 
 .post-options-icon.mouse-over {
     opacity: 1;
+}
+
+.dropdown-options {
+    position: absolute;
+    border: 1px solid black;
+    opacity: 0;
+    transition: opacity 0.2s;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-options.open {
+    opacity: 1;
+}
+
+.post-option {
+    padding: 5px;
+}
+
+.post-option:hover {
+    background-color: #8e24aa;
+}
+
+.post-option:hover > p{
+    color: white;
 }
 
 .comment-count {
