@@ -34,8 +34,24 @@ export default function Post({ postId }) {
                     <p>{posts[postId].description}</p>
                     <div className="comment-count">Comment count</div>
                 </div>
-                <div className="options-icon-container">
-                    {currentUser.id === posts[postId].user_id ? <span className={`material-icons post-options-icon ${mouseOver}`}>more_horiz</span> : null}
+                <div className="options-container">
+                    <div
+                        className="options-icon-container"
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            return isOpen ? setIsOpen('') : setIsOpen('open')
+                        }}
+                    >
+                        {currentUser.id === posts[postId].user_id ? <span className={`material-icons post-options-icon ${mouseOver}`}>more_horiz</span> : null}
+                    </div>
+                    <div className={`dropdown-options ${isOpen}`} onMouseLeave={() => setIsOpen('')}>
+                        <div className="post-option">
+                            <p>Edit</p>
+                        </div>
+                        <div className="post-option">
+                            <p>Delete</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
