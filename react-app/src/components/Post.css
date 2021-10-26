@@ -67,6 +67,7 @@
 
 .options-container {
     position: relative;
+    margin-left: 7px;
 }
 
 .options-icon-container {
@@ -93,6 +94,7 @@
 
 .dropdown-options.open {
     opacity: 1;
+    background-color: white;
 }
 
 .post-option {

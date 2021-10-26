@@ -11,7 +11,7 @@ export default function NewPostForm() {
     const [name, setName] = useState('');
     const [mediaFile, setMediaFile] = useState('');
     const [description, setDesription] = useState('');
-    const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState('');
     const [loading, setLoading] = useState(false);
     const { closeModal } = useModal();
 
@@ -22,6 +22,26 @@ export default function NewPostForm() {
 
     const submitPost = async (e) => {
         e.preventDefault();
+
+        let errors = [];
+
+        const acceptedTypes = ["pdf", "png", "jpg", "jpeg", "gif"];
+        let fileArr = mediaFile ? mediaFile.name.split('.') : null;
+        let fileType = mediaFile ? fileArr[fileArr.length - 1] : null;
+
+        if (!mediaFile) errors.push("Please provide a media file.");
+        if (mediaFile && !acceptedTypes.includes(fileType)) errors.push("The file submitted is not an accepted file type, \n please use pdf, png, jpg, jpeg, or gif.");
+        if (name.length > 85) errors.push("Name must be 85 characters or less.");
+        if (name.length === 0) errors.push("Please provide a name.");
+        if (description.length === 0) errors.push("Please provide a description.");
+        if (!mediaFile) errors.push ("Please provide media(image, video, or gif).");
+
+        if (errors) {
+            setErrors(errors);
+            return null;
+        }
+
+        setErrors('');
         const formData = new FormData();
         formData.append("image", mediaFile)
         formData.append("description", description)
@@ -72,9 +92,15 @@ export default function NewPostForm() {
                         title=" "
                     />
                 </label>
-
                 <button>Submit!</button>
             </form>
+            {errors &&
+                <div>
+                    {errors.map(e => (
+                        <p>{e}</p>
+                    ))}
+                </div>
+            }
         </div>
     )
 }
