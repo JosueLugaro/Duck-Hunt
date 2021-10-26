@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux';
 import PostDetails from './PostDetails';
 import DeletionConfirmation from './DeletionConfirmation';
+import UpdateForm from './UpdateForm';
 import { useModal } from '../context/Modal';
 import './Post.css';
 
@@ -11,7 +12,6 @@ export default function Post({ post }) {
     const { toggleModal, setModalContent } = useModal();
 
     let currentUser = useSelector(state => state.session.user)
-    let posts = useSelector(state => state.Ducks.allDucks)
 
     function openPostDetailsModal(postId) {
         setModalContent((
@@ -23,6 +23,13 @@ export default function Post({ post }) {
     function openDeletionConfirmationModal(postId) {
         setModalContent((
             <DeletionConfirmation postId={postId}/>
+        ))
+        toggleModal();
+    }
+
+    function openUpdateFormModal(postId) {
+        setModalContent((
+            <UpdateForm postId={postId}/>
         ))
         toggleModal();
     }
@@ -54,7 +61,13 @@ export default function Post({ post }) {
                         {currentUser.id === post.user_id ? <span className={`material-icons post-options-icon ${mouseOver}`}>more_horiz</span> : null}
                     </div>
                     <div className={`dropdown-options ${isOpen}`}>
-                        <div className="post-option">
+                        <div
+                            className="post-option"
+                            onClick={(e) => {
+                                e.stopPropagation()
+                                return openUpdateFormModal(post.id)
+                            }}
+                        >
                             <p>Edit</p>
                         </div>
                         <div
