@@ -24,7 +24,7 @@ function Home() {
         <>
             {posts && (
                 <div className="posts-container">
-                    {posts.map(post => (
+                    {posts.reverse().map(post => (
                         <Post post={post}/>
                     ))}
                 </div>
