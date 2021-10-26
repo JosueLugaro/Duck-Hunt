@@ -29,7 +29,7 @@ export default function Post({ post }) {
 
     function openUpdateFormModal(postId) {
         setModalContent((
-            <UpdateForm postId={postId}/>
+            <UpdateForm postId={postId} postName={post.name} postDescription={post.description}/>
         ))
         toggleModal();
     }
