@@ -13,6 +13,7 @@ import { useModal } from './context/Modal';
 import Modal from './components/Modal';
 import ScrollToTop from './components/ScrollToTop';
 import { getAllDucksThunk } from './store/Ducks';
+import { getAllCommentsThunk } from './store/Comments';
 
 function App() {
   const { closeModal } = useModal();
@@ -24,6 +25,7 @@ function App() {
     (async() => {
       await dispatch(authenticate());
       await dispatch(getAllDucksThunk());
+      await dispatch(getAllCommentsThunk());
       setLoaded(true);
     })();
   }, [dispatch]);

@@ -4,10 +4,10 @@ import { useModal } from '../context/Modal';
 import { updateDuckThunk, getAllDucksThunk } from '../store/Ducks';
 import './UpdateForm.css';
 
-export default function UpdateForm({ postId }) {
+export default function UpdateForm({ postId, postName, postDescription }) {
     const dispatch = useDispatch();
-    const [name, setName] = useState('');
-    const [description, setDesription] = useState('');
+    const [name, setName] = useState(postName);
+    const [description, setDesription] = useState(postDescription);
     const [errors, setErrors] = useState('');
     const { closeModal } = useModal();
 
@@ -42,39 +42,38 @@ export default function UpdateForm({ postId }) {
 
     return (
         <div className="update-form-modal-container">
-            <h1>This is the update form! {postId}</h1>
             <div className="form-container">
-            <span className="new-post-label">New post</span>
-            <form className="new-post-form" onSubmit={submitPost}>
-                <label>
-                    Name:
-                    <input
-                        type="text"
-                        placeholder="What is the name of your duck?"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        className="name-input"
-                    />
-                </label>
-                <label>
-                    Description:
-                    <textarea
-                        value={description}
-                        onChange={(e) => setDesription(e.target.value)}
-                        placeholder="Describe this duck please"
-                    />
-                </label>
+                <h1 className="new-post-label">Update post</h1>
+                <form className="new-post-form" onSubmit={submitPost}>
+                    <label>
+                        Name:
+                        <input
+                            type="text"
+                            placeholder="What is the name of your duck?"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className="name-input"
+                        />
+                    </label>
+                    <label>
+                        Description:
+                        <textarea
+                            value={description}
+                            onChange={(e) => setDesription(e.target.value)}
+                            placeholder="Describe this duck please"
+                        />
+                    </label>
 
-                <button>Submit!</button>
-            </form>
-            {errors &&
-                <div>
-                    {errors.map(e => (
-                        <p>{e}</p>
-                    ))}
-                </div>
-            }
-        </div>
+                    <button>Submit!</button>
+                </form>
+                {errors &&
+                    <div>
+                        {errors.map(e => (
+                            <p>{e}</p>
+                        ))}
+                    </div>
+                }
+            </div>
         </div>
     )
 }

@@ -19,6 +19,7 @@ export default function PostDetails({ postId }) {
                 <img src={currentDuck.image} className="duck-media" alt="duck"/>
             </div>
             <p className="duck-description">{currentDuck.description}</p>
+            <div className="comments-section"></div>
         </div>
     )
 }
