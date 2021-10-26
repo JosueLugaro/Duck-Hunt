@@ -57,9 +57,7 @@ export const addNewDuckThunk = (postData) => async (dispatch) => {
 }
 
 export const deleteDuckThunk = (postId) => async (dispatch) => {
-    console.log("BEFORE RESPONSE")
     let response = await fetch(`/api/ducks/${postId}/delete`);
-    console.log("AFTER RESPONSE")
 
     if (response.ok) {
         // let data = await response.json();
@@ -67,6 +65,18 @@ export const deleteDuckThunk = (postId) => async (dispatch) => {
         dispatch(deleteDuck(postId));
         // dispatch(setAllDucks(data.ducks))
         return "Duck Deleted!"
+    }
+}
+
+export const updateDuckThunk = (postId, postData) => async (dispatch) => {
+    let response = await fetch(`/api/ducks/${postId}/update`, {
+        method: "POST",
+        body: postData
+    });
+
+
+    if (response.ok) {
+        return null;
     }
 }
 

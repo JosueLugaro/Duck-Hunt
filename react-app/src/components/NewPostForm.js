@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { getAllDucksThunk } from '../store/Ducks';
-import { useModal } from '../context/Modal'
+import { useModal } from '../context/Modal';
 import { useDispatch } from 'react-redux';
 import { addNewDuckThunk } from '../store/Ducks';
 import './NewPostForm.css'
@@ -36,7 +36,7 @@ export default function NewPostForm() {
         if (description.length === 0) errors.push("Please provide a description.");
         if (!mediaFile) errors.push ("Please provide media(image, video, or gif).");
 
-        if (errors) {
+        if (errors.length) {
             setErrors(errors);
             return null;
         }
