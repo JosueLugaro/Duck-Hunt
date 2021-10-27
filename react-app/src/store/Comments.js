@@ -27,11 +27,10 @@ export const addNewCommentThunk = (commentData) => async(dispatch) => {
         method: "POST",
         body: commentData
     });
-    console.log('AFTER FETCH IN THUNK')
+    
     if (response.ok) {
         let data = await response.json();
         dispatch(postNewComment(data.comment));
-        console.log(data, "<---------------------")
         return null;
     }
 }

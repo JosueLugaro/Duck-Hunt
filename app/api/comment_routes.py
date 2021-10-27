@@ -9,7 +9,6 @@ comment_routes = Blueprint('comment', __name__)
 @login_required
 def get_all_comments():
     comments = Comment.query.all()
-    test = [comment.to_dict() for comment in comments]
     return {"comments": [comment.to_dict() for comment in comments]}
 
 @comment_routes.route('/new', methods=["POST"])
