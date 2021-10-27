@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentDuckThunk } from '../store/Ducks';
 import { addNewCommentThunk } from '../store/Comments';
+import Comment from './Comment';
 import './PostDetails.css';
 
 export default function PostDetails({ postId }) {
@@ -66,17 +67,7 @@ export default function PostDetails({ postId }) {
                     </div>
                     <div className="comments-container">
                         {comments.reverse().map(comment => (
-                            (comment.duck_id === postId) ?
-                                <div className="comment">
-                                    <div className="user-info">
-                                        <img src={comment.user.profile_pic} alt="user-profile-pic"className="comment-user-profile-pic"/>
-                                        <div>{comment.user.username}</div>
-                                    </div>
-                                    <div className="comment-content">
-                                        {comment.content}
-                                    </div>
-                                </div> :
-                                null
+                            (comment.duck_id === postId) ? <Comment commentId={comment.id}/> :null
                         ))}
                     </div>
                 </div>
