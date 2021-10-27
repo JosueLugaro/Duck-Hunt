@@ -1,8 +1,14 @@
 let GET_ALL_COMMENTS = 'comments/GET_ALL_COMMENTS';
+let NEW_COMMENT = 'comments/NEW_COMMENT';
 
 const setAllComments = (comments) => ({
     type: GET_ALL_COMMENTS,
     payload: comments
+})
+
+const postNewComment = (commentData) => ({
+    type: NEW_COMMENT,
+    payload: commentData
 })
 
 export const getAllCommentsThunk = () => async(dispatch) => {
@@ -15,6 +21,20 @@ export const getAllCommentsThunk = () => async(dispatch) => {
     }
 }
 
+export const addNewCommentThunk = (commentData) => async(dispatch) => {
+    console.log('BEFORE FETCH IN THUNK')
+    let response = await fetch('/api/comments/new', {
+        method: "POST",
+        body: commentData
+    });
+    console.log('AFTER FETCH IN THUNK')
+
+    if (response.ok) {
+        let data = await response.json();
+        dispatch(postNewComment(data));
+        return null;
+    }
+}
 
 let initialState = {};
 

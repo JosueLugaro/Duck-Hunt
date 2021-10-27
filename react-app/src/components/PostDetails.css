@@ -26,3 +26,27 @@
     font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
     font-size: 13px;
 }
+
+.discussion {
+    margin-bottom: 10px;
+}
+
+.comment-input-form {
+    display: flex;
+    gap: 10px;
+}
+
+.comment-input {
+    width: 200px;
+}
+
+.comment-submit-container {
+    border: 1px solid black;
+    padding: 2px 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.comment-submit-container p {
+    color: black;
+}

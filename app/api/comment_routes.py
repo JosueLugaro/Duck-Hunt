@@ -11,3 +11,23 @@ def get_all_comments():
     comments = Comment.query.all()
     test = [comment.to_dict() for comment in comments]
     return {"comments": [comment.to_dict() for comment in comments]}
+
+@comment_routes.route('/new', methods=["POST"])
+@login_required
+def new_comment():
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        new_comment = Comment(
+            user_id=current_user.id,
+            duck_id=form.data["duck_id"],
+            content=form.data["content"]
+        )
+
+        db.session.add(new_comment)
+        db.session.commit()
+
+        return {
+            "comment": new_comment.to_dict()
+        }
