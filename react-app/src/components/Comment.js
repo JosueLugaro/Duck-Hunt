@@ -53,6 +53,11 @@ export default function Comment({ commentId }) {
                         </div>
                     </div>
                 </div>
+                {/*
+                    To make the input appear when the edit dropdown option is clicked:
+                    where the content is rendered, conditionally render either the content or a form and input field
+                    which contains the comments content based on a state variable
+                */}
                 <div className="comment-content">
                     {comment.content}
                 </div>
