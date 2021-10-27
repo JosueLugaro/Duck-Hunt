@@ -15,6 +15,10 @@
     font-weight: 600;
 }
 
+.username-and-options-container {
+    display: flex;
+}
+
 .comment-content {
     font-weight: 300;
 }
