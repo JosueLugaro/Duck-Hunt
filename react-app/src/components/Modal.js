@@ -9,9 +9,10 @@ export default function Modal() {
     if (!isOpen) return null
     return ReactDom.createPortal(
         <>
-            <div onClick={closeModal} className="modal-overlay"/>
-            <div className="modal-styles">
-                {modalContent}
+            <div onClick={closeModal} className="modal-overlay">
+                <div className="modal-styles">
+                    {modalContent}
+                </div>
             </div>
         </>,
         document.getElementById('portal')
