@@ -69,7 +69,7 @@ export default function PostDetails({ postId }) {
                             (comment.duck_id === postId) ?
                                 <div className="comment">
                                     <div className="user-info">
-                                        <img src={comment.user.profile_pic} alt="user-profile-pic"className="user-profile-pic"/>
+                                        <img src={comment.user.profile_pic} alt="user-profile-pic"className="comment-user-profile-pic"/>
                                         <div>{comment.user.username}</div>
                                     </div>
                                     <div className="comment-content">
