@@ -1,5 +1,5 @@
 .modal-overlay {
-    position: absolute;
+    position: fixed;
     height: 400px;
     overflow: auto;
     height: 100vh;

@@ -10,7 +10,7 @@ export default function Modal() {
     return ReactDom.createPortal(
         <>
             <div onClick={closeModal} className="modal-overlay">
-                <div className="modal-styles">
+                <div className="modal-styles" onClick={(e) => e.stopPropagation()}>
                     {modalContent}
                 </div>
             </div>
