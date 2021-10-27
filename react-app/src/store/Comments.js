@@ -28,10 +28,10 @@ export const addNewCommentThunk = (commentData) => async(dispatch) => {
         body: commentData
     });
     console.log('AFTER FETCH IN THUNK')
-
     if (response.ok) {
         let data = await response.json();
-        dispatch(postNewComment(data));
+        dispatch(postNewComment(data.comment));
+        console.log(data, "<---------------------")
         return null;
     }
 }
@@ -43,6 +43,9 @@ export default function CommentsReducer(state = initialState, action) {
     switch(action.type) {
         case GET_ALL_COMMENTS:
             action.payload.forEach(comment => newState[comment.id] = comment);
+            return newState
+        case NEW_COMMENT:
+            newState[action.payload.id] = action.payload
             return newState
         default:
             return state

@@ -13,9 +13,8 @@ export default function PostDetails({ postId }) {
     useEffect(() => {
         (async () => {
             await dispatch(setCurrentDuckThunk(postId))
-            await dispatch(getAllCommentsThunk())
         })()
-    }, [dispatch, postId, comments.length])
+    }, [dispatch, postId])
 
 
     const submitComment = async (e) => {
