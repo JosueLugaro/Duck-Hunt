@@ -79,10 +79,12 @@
 .post-options-icon {
     opacity: 0;
     transition: opacity 0.3s;
+    pointer-events: none;
 }
 
 .post-options-icon.mouse-over {
     opacity: 1;
+    pointer-events: auto;
 }
 
 .dropdown-options {
@@ -92,6 +94,7 @@
     transition: opacity 0.2s;
     pointer-events: none;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+    z-index: 10;
 }
 
 .dropdown-options.open {
