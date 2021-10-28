@@ -8,7 +8,7 @@ duck_routes = Blueprint('duck', __name__)
 
 # Get all posts
 @duck_routes.route('/')
-@login_required
+# @login_required
 def get_all_ducks():
     ducks = Duck.query.all()
 

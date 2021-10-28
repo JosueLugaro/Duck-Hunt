@@ -7,7 +7,7 @@ comment_routes = Blueprint('comment', __name__)
 
 # Get all comments
 @comment_routes.route('/')
-@login_required
+# @login_required
 def get_all_comments():
     comments = Comment.query.all()
     return {"comments": [comment.to_dict() for comment in comments]}
