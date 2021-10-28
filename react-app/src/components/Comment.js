@@ -1,13 +1,19 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteCommentThunk } from '../store/Comments';
 import './Comment.css';
 
 export default function Comment({ commentId }) {
+    const dispatch = useDispatch();
     let currentUser = useSelector(state => state.session.user);
     let comments = useSelector(state => state.Comments);
     const [isOpen, setIsOpen] = useState('');
     const [mouseOver, setMouseOver] = useState('');
     let comment = comments[commentId]
+
+    const deleteComment = async (comment_id) => {
+        return await dispatch(deleteCommentThunk(comment_id))
+    }
 
     return (
         <div
@@ -45,7 +51,7 @@ export default function Comment({ commentId }) {
                                 className="post-option"
                                 onClick={(e) => {
                                     e.stopPropagation()
-                                    // return openDeletionConfirmationModal(post.id)
+                                    return deleteComment(commentId)
                                 }}
                             >
                                 <p>Delete</p>
