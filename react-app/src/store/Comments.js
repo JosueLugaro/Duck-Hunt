@@ -48,6 +48,18 @@ export const deleteCommentThunk = (commentId) => async(dispatch) => {
     }
 }
 
+export const updateCommentThunk = (commentId, commentData) => async(dispatch) => {
+    let response = await fetch(`/api/comments/${commentId}/update`, {
+        method: "POST",
+        body: commentData
+    })
+
+    if (response.ok) {
+        await dispatch(getAllCommentsThunk())
+        return "Update successful!"
+    }
+}
+
 let initialState = {};
 
 export default function CommentsReducer(state = initialState, action) {

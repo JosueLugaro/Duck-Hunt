@@ -67,7 +67,7 @@ export default function PostDetails({ postId }) {
                     </div>
                     <div className="comments-container">
                         {comments.reverse().map(comment => (
-                            (comment.duck_id === postId) ? <Comment commentId={comment.id}/> :null
+                            (comment.duck_id === postId) ? <Comment commentId={comment.id} commentContent={comment.content}/> :null
                         ))}
                     </div>
                 </div>
