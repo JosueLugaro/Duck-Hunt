@@ -19,6 +19,12 @@
     display: flex;
 }
 
+.everything-but-the-user-profile-pic {
+    width: 950px;
+}
+
 .comment-content {
     font-weight: 300;
+    width: inherit;
+    overflow-wrap: break-word;
 }
