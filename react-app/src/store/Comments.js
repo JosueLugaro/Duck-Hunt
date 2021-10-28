@@ -1,5 +1,6 @@
 let GET_ALL_COMMENTS = 'comments/GET_ALL_COMMENTS';
 let NEW_COMMENT = 'comments/NEW_COMMENT';
+let DELETE_COMMENT = 'comments/DELETE_COMMENT';
 
 const setAllComments = (comments) => ({
     type: GET_ALL_COMMENTS,
@@ -9,6 +10,11 @@ const setAllComments = (comments) => ({
 const postNewComment = (commentData) => ({
     type: NEW_COMMENT,
     payload: commentData
+})
+
+const deleteComment = (commentId) => ({
+    type: DELETE_COMMENT,
+    payload: commentId
 })
 
 export const getAllCommentsThunk = () => async(dispatch) => {
@@ -22,16 +28,23 @@ export const getAllCommentsThunk = () => async(dispatch) => {
 }
 
 export const addNewCommentThunk = (commentData) => async(dispatch) => {
-    console.log('BEFORE FETCH IN THUNK')
     let response = await fetch('/api/comments/new', {
         method: "POST",
         body: commentData
     });
-    
+
     if (response.ok) {
         let data = await response.json();
         dispatch(postNewComment(data.comment));
         return null;
+    }
+}
+
+export const deleteCommentThunk = (commentId) => async(dispatch) => {
+    let response = await fetch(`/api/comments/${commentId}/delete`);
+
+    if (response.ok) {
+        dispatch(deleteComment(commentId))
     }
 }
 
@@ -45,6 +58,9 @@ export default function CommentsReducer(state = initialState, action) {
             return newState
         case NEW_COMMENT:
             newState[action.payload.id] = action.payload
+            return newState
+        case DELETE_COMMENT:
+            delete newState[action.payload]
             return newState
         default:
             return state
