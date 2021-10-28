@@ -41,3 +41,17 @@ def delete_comment(comment_id):
     db.session.delete(comment)
     db.session.commit()
     return "Comment Successfully deleted!"
+
+@comment_routes.route('/<int:comment_id>/update', methods=["POST"])
+@login_required
+def update_comment(comment_id):
+    comment = Comment.query.filter(comment_id == Comment.id).first()
+
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        comment.content = form.data["content"]
+        db.session.commit()
+        return "Update Successful!"
+    else:
+        return "Bad update"
