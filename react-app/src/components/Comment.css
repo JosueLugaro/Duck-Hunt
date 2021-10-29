@@ -28,3 +28,15 @@
     width: inherit;
     overflow-wrap: break-word;
 }
+
+.comment-edit-form {
+    display: flex;
+    gap: 10px;
+}
+
+.comment-update-submit {
+    background-color: blueviolet;
+    color: white;
+    border: none;
+    border-radius: 3px;
+}

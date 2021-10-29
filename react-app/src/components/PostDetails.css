@@ -27,8 +27,10 @@
     font-size: 13px;
 }
 
-.discussion {
-    margin-bottom: 10px;
+.comments-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .comment-input-form {
@@ -36,8 +38,14 @@
     gap: 10px;
 }
 
+.comment-input-container {
+    height: 27px;
+}
+
 .comment-input {
     width: 200px;
+    height: 100%;
+    padding: 0;
 }
 
 .comment-submit-button {

@@ -80,9 +80,9 @@ export default function Comment({ commentId }) {
                 <div className="comment-content">
                     {
                         openEditor ?
-                        <form onSubmit={updateComment}>
+                        <form onSubmit={updateComment} className="comment-edit-form">
                             <input type="text" value={commentContent} onChange={(e) => setCommentContent(e.target.value)}/>
-                            <button>Update</button>
+                            <button className="comment-update-submit">Update</button>
                         </form>
                         :
                         comment.content
