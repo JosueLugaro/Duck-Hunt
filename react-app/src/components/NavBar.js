@@ -46,21 +46,6 @@ const NavBar = () => {
                   </NavLink>
                 </div>
                 <div className="dropdown-option">
-                  <NavLink to='/login' exact={true} activeClassName='active'>
-                    Login
-                  </NavLink>
-                </div>
-                <div className="dropdown-option">
-                  <NavLink to='/sign-up' exact={true} activeClassName='active'>
-                    Sign Up
-                  </NavLink>
-                </div>
-                <div className="dropdown-option">
-                  <NavLink to='/users' exact={true} activeClassName='active'>
-                    Users
-                  </NavLink>
-                </div>
-                <div className="dropdown-option">
                   <LogoutButton />
                 </div>
               </div>
