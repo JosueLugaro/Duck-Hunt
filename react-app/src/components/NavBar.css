@@ -14,6 +14,10 @@
     width: 40px;
 }
 
+.duck-hunt-svg {
+    transform: scale(1.09);
+}
+
 .right-side-nav {
     display: flex;
     gap: 20px;
