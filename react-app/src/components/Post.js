@@ -12,6 +12,8 @@ export default function Post({ post }) {
     const { toggleModal, setModalContent } = useModal();
 
     let currentUser = useSelector(state => state.session.user)
+    let comments = useSelector(state => Object.values(state.Comments))
+    let commentsArr = comments.filter(comment => comment.duck_id === post.id)
 
     function openPostDetailsModal(postId) {
         setModalContent((
@@ -48,7 +50,9 @@ export default function Post({ post }) {
                 <div className="post-text">
                     <h2>{post.name}</h2>
                     <p>{post.description}</p>
-                    <div className="comment-count">Comment count</div>
+                    <div className="comment-count">
+                        <p>{commentsArr.length} {commentsArr.length === 1 ? "Comment" : "Comments"}</p>
+                    </div>
                 </div>
                 <div className="options-container" onMouseLeave={() => setIsOpen('')}>
                     <div

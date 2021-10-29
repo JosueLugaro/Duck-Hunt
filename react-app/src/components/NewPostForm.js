@@ -17,8 +17,6 @@ export default function NewPostForm() {
     const [loading, setLoading] = useState(false);
     const { closeModal } = useModal();
 
-    console.log(errors)
-
     const updateFile = (e) => {
         const file = e.target.files[0];
         if (file) setMediaFile(file);
