@@ -41,7 +41,19 @@ def new_duck():
     upload = upload_file_to_s3(image)
 
     if "url" not in upload:
-        return upload, 400
+        new_duck = Duck(
+            user_id=current_user.id,
+            name="AN ERROR OCCURED PLEASE TRY AGAIN",
+            description="AN ERROR OCCURED PLEASE TRY AGAIN",
+            image="https://duck--hunt.s3.amazonaws.com/0083a855d68c40bca3fd979a167680c3.jpeg"
+        )
+
+        db.session.add(new_duck)
+        db.session.commit()
+        return {
+            "post": new_duck.to_dict()
+        }
+
 
     url = upload["url"]
 
