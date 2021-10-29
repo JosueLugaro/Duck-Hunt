@@ -6,14 +6,18 @@ import { addNewDuckThunk } from '../store/Ducks';
 import './NewPostForm.css'
 
 
+
 export default function NewPostForm() {
     const dispatch = useDispatch();
     const [name, setName] = useState('');
     const [mediaFile, setMediaFile] = useState('');
     const [description, setDesription] = useState('');
-    const [errors, setErrors] = useState('');
+    const [awsErrors, setAWSErrors] = useState('');
+    const [errors, setErrors] = useState([]);
     const [loading, setLoading] = useState(false);
     const { closeModal } = useModal();
+
+    console.log(errors)
 
     const updateFile = (e) => {
         const file = e.target.files[0];
@@ -52,7 +56,7 @@ export default function NewPostForm() {
         const data = await dispatch(addNewDuckThunk(formData));
         setLoading(false);
         if (data) {
-            setErrors(data)
+            setAWSErrors(data)
         } else {
             await dispatch(getAllDucksThunk())
             closeModal();
@@ -99,6 +103,11 @@ export default function NewPostForm() {
                     {errors.map(e => (
                         <p>{e}</p>
                     ))}
+                </div>
+            }
+            {awsErrors &&
+                <div>
+                    {awsErrors}
                 </div>
             }
         </div>

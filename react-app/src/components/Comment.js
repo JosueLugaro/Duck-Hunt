@@ -11,7 +11,7 @@ export default function Comment({ commentId }) {
     const [mouseOver, setMouseOver] = useState('');
     const [openEditor, setOpenEditor] = useState('');
     let comment = comments[commentId]
-    const [commentContent, setCommentContent] = useState(comment.content);
+    const [commentContent, setCommentContent] = useState();
 
     const deleteComment = async (comment_id) => {
         return await dispatch(deleteCommentThunk(comment_id))
@@ -26,6 +26,7 @@ export default function Comment({ commentId }) {
 
         await dispatch(updateCommentThunk(commentId, formData))
         setOpenEditor('')
+        setCommentContent('')
         return "comment updated!";
     }
 
@@ -56,6 +57,7 @@ export default function Comment({ commentId }) {
                                 className="post-option"
                                 onClick={(e) => {
                                     e.stopPropagation()
+                                    setCommentContent(comment.content)
                                     setOpenEditor('open')
                                     setIsOpen('')
                                     // return openUpdateFormModal(post.id)
