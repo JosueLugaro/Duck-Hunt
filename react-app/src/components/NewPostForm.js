@@ -31,12 +31,11 @@ export default function NewPostForm() {
         let fileArr = mediaFile ? mediaFile.name.split('.') : null;
         let fileType = mediaFile ? fileArr[fileArr.length - 1] : null;
 
-        if (!mediaFile) errors.push("Please provide a media file.");
         if (mediaFile && !acceptedTypes.includes(fileType)) errors.push("The file submitted is not an accepted file type, \n please use pdf, png, jpg, jpeg, or gif.");
-        if (name.length > 85) errors.push("Name must be 85 characters or less.");
-        if (name.length === 0) errors.push("Please provide a name.");
-        if (description.length === 0) errors.push("Please provide a description.");
-        if (!mediaFile) errors.push ("Please provide media(image, video, or gif).");
+        if (name.length > 80) errors.push("Name must be 80 characters or less.");
+        if (name.length === 0 || name.trim() === "") errors.push("Please provide a name.");
+        if (description.length === 0 || description.trim() === "") errors.push("Please provide a description.");
+        if (!mediaFile) errors.push ("Please provide a media file(image or gif).");
 
         if (errors.length) {
             setErrors(errors);
@@ -63,28 +62,23 @@ export default function NewPostForm() {
 
     return (
         <div className="form-container">
-            <span className="new-post-label">New post</span>
             <form className="new-post-form" onSubmit={submitPost}>
-                <label>
-                    Name:
-                    <input
-                        type="text"
-                        placeholder="What is the name of your duck?"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        className="name-input"
-                    />
-                </label>
-                <label>
-                    Description:
-                    <textarea
-                        value={description}
-                        onChange={(e) => setDesription(e.target.value)}
-                        placeholder="Describe this duck please"
-                    />
-                </label>
-                <label htmlFor="media-file">
-                    Duck pic:
+                <input
+                    type="text"
+                    placeholder="What is the name of your duck?"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="name-input"
+                    maxLength="80"
+                />
+                <textarea
+                    value={description}
+                    onChange={(e) => setDesription(e.target.value)}
+                    placeholder="Describe this duck please"
+                    className="new-duck-description"
+                />
+                <div className="file-input-cover-button">
+                    <span className="file-input-cover-text">Upload</span>
                     <input
                         type="file"
                         id="media-file"
@@ -93,8 +87,10 @@ export default function NewPostForm() {
                         onChange={updateFile}
                         title=" "
                     />
-                </label>
-                <button>Submit!</button>
+                </div>
+                <button className="new-post-submit-button">
+                    <span>Submit</span>
+                </button>
             </form>
             {errors &&
                 <div>

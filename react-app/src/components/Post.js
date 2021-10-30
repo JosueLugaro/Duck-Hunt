@@ -49,7 +49,7 @@ export default function Post({ post }) {
                 </div>
                 <div className="post-text">
                     <h2>{post.name}</h2>
-                    <p>{post.description}</p>
+                    <p>{post.description.slice(0, 30)}...</p>
                     <div className="comment-count">
                         <p>{commentsArr.length} {commentsArr.length === 1 ? "Comment" : "Comments"}</p>
                     </div>
