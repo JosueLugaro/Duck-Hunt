@@ -17,3 +17,67 @@
     justify-content: space-around;
     height: 70%;
 }
+
+.name-input {
+    width: 300px;
+}
+
+.new-duck-description {
+    resize: none;
+    height: 200px;
+    width: 300px;
+    overflow-y: auto;
+}
+
+.file-input-cover-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 300px;
+    height: 40px;
+    border-radius: 3px;
+    z-index: 1;
+    background-color: blueviolet;
+    transition: background-color 0.3s;
+}
+
+.file-input-cover-button:hover {
+    background-color: rgb(155, 47, 255);
+}
+
+.file-input-cover-text {
+    color: white;
+}
+
+input[type='file'] {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 300px;
+    height: 40px;
+    z-index: 2;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.new-post-submit-button {
+    width: 300px;
+    height: 40px;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    background-color: blueviolet;
+    transition: background-color 0.3s;
+}
+
+.new-post-submit-button:hover {
+    background-color: rgb(155, 47, 255);
+}
+
+.new-post-submit-button > span {
+    color: white;
+    font-size: 16px;
+}

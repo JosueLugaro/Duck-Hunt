@@ -24,15 +24,19 @@ export default function PostDetails({ postId }) {
 
         let errors = [];
 
-        if (commentContent.length === 0) errors.push("You cannot submit an empty comment");
+        if (commentContent.length === 0 || commentContent.trim() === '') errors.push("You cannot submit an empty comment");
 
-        setErrors(errors);
+        if (errors.length) {
+            setErrors(errors);
+            return null
+        }
 
         const formData = new FormData();
         formData.append("duck_id", postId)
         formData.append("content", commentContent)
         const data = await dispatch(addNewCommentThunk(formData));
         setCommentContent('');
+        setErrors()
         return null;
     }
 

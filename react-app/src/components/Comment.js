@@ -10,8 +10,9 @@ export default function Comment({ commentId }) {
     const [isOpen, setIsOpen] = useState('');
     const [mouseOver, setMouseOver] = useState('');
     const [openEditor, setOpenEditor] = useState('');
-    let comment = comments[commentId]
     const [commentContent, setCommentContent] = useState();
+    const [errors, setErrors] = useState();
+    let comment = comments[commentId]
 
     const deleteComment = async (comment_id) => {
         return await dispatch(deleteCommentThunk(comment_id))
@@ -20,6 +21,16 @@ export default function Comment({ commentId }) {
     const updateComment = async (e) => {
         e.preventDefault()
 
+        let errors = [];
+
+        if (commentContent.length === 0 || commentContent.trim() === '') errors.push("You cannot submit an empty comment");
+
+        if (errors.length) {
+            setErrors(errors);
+            setCommentContent(comment.content)
+            return null
+        }
+
         const formData = new FormData();
         formData.append("content", commentContent)
         formData.append("duck_id", currentUser.id)
@@ -27,7 +38,8 @@ export default function Comment({ commentId }) {
         await dispatch(updateCommentThunk(commentId, formData))
         setOpenEditor('')
         setCommentContent('')
-        return "comment updated!";
+        setErrors()
+        return "comment updated!"
     }
 
     return (
@@ -86,6 +98,11 @@ export default function Comment({ commentId }) {
                         </form>
                         :
                         comment.content
+                    }
+                    { errors &&
+                        errors.map(e => (
+                            <p>{e}</p>
+                        ))
                     }
                 </div>
             </div>
