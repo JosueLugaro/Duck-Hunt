@@ -24,7 +24,6 @@ export default function NewPostForm() {
 
     const submitPost = async (e) => {
         e.preventDefault();
-        console.log(mediaFile, "<-------------------------------------------")
         let errors = [];
 
         const acceptedTypes = ["pdf", "png", "jpg", "jpeg", "gif"];
