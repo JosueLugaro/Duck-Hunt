@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import './LoginForm.css';
 
@@ -18,6 +18,14 @@ const LoginForm = () => {
       setErrors(data);
     }
   };
+
+  const demoLogin = async (e) => {
+    e.preventDefault()
+    const data = await dispatch(login("demo@aa.io", "password"));
+    if (data) {
+      setErrors(data)
+    }
+  }
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -59,7 +67,10 @@ const LoginForm = () => {
                 className="password-input"
                 />
             </div>
-            <button type='submit' className="login-button">Login</button>
+            <div className="login-buttons-container">
+              <button type='submit' className="login-button">Login</button>
+              <button className="login-button" onClick={demoLogin}>Demo Login</button>
+            </div>
           </div>
           <div className="errors-container">
             {errors.map((error, ind) => (
@@ -67,6 +78,12 @@ const LoginForm = () => {
             ))}
           </div>
         </form>
+        <div className="outside-form-container">
+          <p>Don't have an account?</p>
+          <NavLink to="/sign-up" className="sign-up-link">
+            Sign Up!
+          </NavLink>
+        </div>
       </div>
     </div>
   );
