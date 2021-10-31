@@ -24,7 +24,6 @@ export default function NewPostForm() {
 
     const submitPost = async (e) => {
         e.preventDefault();
-
         let errors = [];
 
         const acceptedTypes = ["pdf", "png", "jpg", "jpeg", "gif"];
@@ -78,7 +77,7 @@ export default function NewPostForm() {
                     className="new-duck-description"
                 />
                 <div className="file-input-cover-button">
-                    <span className="file-input-cover-text">Upload</span>
+                    <span className="file-input-cover-text">{mediaFile ? `Selected` : "Upload"}</span>
                     <input
                         type="file"
                         id="media-file"
@@ -89,7 +88,7 @@ export default function NewPostForm() {
                     />
                 </div>
                 <button className="new-post-submit-button">
-                    <span>Submit</span>
+                    <span>{loading ? "Loading" : "Submit"}</span>
                 </button>
             </form>
             {errors &&
