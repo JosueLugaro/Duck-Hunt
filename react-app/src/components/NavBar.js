@@ -41,11 +41,6 @@ const NavBar = () => {
               </div>
               <div className={`action-container ${isClosed}`}>
                 <div className="dropdown-option">
-                  <NavLink to='/' exact={true} activeClassName='active'>
-                    Home
-                  </NavLink>
-                </div>
-                <div className="dropdown-option">
                   <LogoutButton />
                 </div>
               </div>
