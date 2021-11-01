@@ -62,7 +62,7 @@ export default function PostDetails({ postId }) {
                             </button>
                         </form>
                         {errors &&
-                                    <div className="errors-container">
+                                    <div className="comment-errors-container">
                                         { errors.map(e => (
                                             <p>{e}</p>
                                         ))}
