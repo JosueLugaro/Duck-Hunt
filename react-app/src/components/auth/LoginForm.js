@@ -41,48 +41,57 @@ const LoginForm = () => {
 
   return (
     <div className="view-port">
-      <div className="login-heading text">
+      <div className="blurb-about-duck-hunt">
         <h1>Welcome to Duck Hunt!</h1>
+        <p>
+          A lovely community of duck lovers who can share their
+          interests and fascinations with each other!
+        </p>
       </div>
-      <div className="login-form-container">
-        <form onSubmit={onLogin} className="login-form">
-          <div className="input-container">
-            <div className="email-input-container">
-              <input
-                name='email'
-                type='text'
-                placeholder='Email'
-                value={email}
-                onChange={updateEmail}
-                className="email-input"
-                />
+      <div className="login-container">
+        <div className="login-heading text">
+          <h1>Login</h1>
+        </div>
+        <div className="login-form-container">
+          <form onSubmit={onLogin} className="login-form">
+            <div className="input-container">
+              <div className="email-input-container">
+                <input
+                  name='email'
+                  type='text'
+                  placeholder='Email'
+                  value={email}
+                  onChange={updateEmail}
+                  className="email-input"
+                  />
+              </div>
+              <div className="password-input-container">
+                <input
+                  name='password'
+                  type='password'
+                  placeholder='Password'
+                  value={password}
+                  onChange={updatePassword}
+                  className="password-input"
+                  />
+              </div>
+              <div className="login-buttons-container">
+                <button type='submit' className="login-button">Login</button>
+                <button className="login-button" onClick={demoLogin}>Demo Login</button>
+              </div>
             </div>
-            <div className="password-input-container">
-              <input
-                name='password'
-                type='password'
-                placeholder='Password'
-                value={password}
-                onChange={updatePassword}
-                className="password-input"
-                />
+            <div className="errors-container">
+              {errors.map((error, ind) => (
+                <div key={ind}>{error}</div>
+              ))}
             </div>
-            <div className="login-buttons-container">
-              <button type='submit' className="login-button">Login</button>
-              <button className="login-button" onClick={demoLogin}>Demo Login</button>
-            </div>
+          </form>
+          <div className="outside-form-container">
+            <p>Don't have an account?</p>
+            <NavLink to="/sign-up" className="sign-up-link">
+              Sign Up!
+            </NavLink>
           </div>
-          <div className="errors-container">
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
-          </div>
-        </form>
-        <div className="outside-form-container">
-          <p>Don't have an account?</p>
-          <NavLink to="/sign-up" className="sign-up-link">
-            Sign Up!
-          </NavLink>
         </div>
       </div>
     </div>
