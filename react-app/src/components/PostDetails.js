@@ -34,7 +34,7 @@ export default function PostDetails({ postId }) {
         const formData = new FormData();
         formData.append("duck_id", postId)
         formData.append("content", commentContent)
-        const data = await dispatch(addNewCommentThunk(formData));
+        await dispatch(addNewCommentThunk(formData));
         setCommentContent('');
         setErrors()
         return null;
@@ -64,14 +64,14 @@ export default function PostDetails({ postId }) {
                         {errors &&
                                     <div className="comment-errors-container">
                                         { errors.map(e => (
-                                            <p>{e}</p>
+                                            <p key={e}>{e}</p>
                                         ))}
                                     </div>
                         }
                     </div>
                     <div className="comments-container">
                         {comments.reverse().map(comment => (
-                            (comment.duck_id === postId) ? <Comment commentId={comment.id} commentContent={comment.content}/> :null
+                            (comment.duck_id === postId) ? <Comment commentId={comment.id} commentContent={comment.content} key={Math.floor(Math.random() * 10000)}/> :null
                         ))}
                     </div>
                 </div>

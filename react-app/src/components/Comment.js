@@ -64,29 +64,31 @@ export default function Comment({ commentId }) {
                         >
                             {currentUser.id === comment.user_id ? <span className={`material-icons post-options-icon ${mouseOver}`}>more_horiz</span> : null}
                         </div>
-                        <div className={`dropdown-options ${isOpen}`}>
-                            <div
-                                className="post-option"
-                                onClick={(e) => {
-                                    e.stopPropagation()
-                                    setCommentContent(comment.content)
-                                    setOpenEditor('open')
-                                    setIsOpen('')
-                                    // return openUpdateFormModal(post.id)
-                                }}
-                            >
-                                <p>Edit</p>
+                        {   currentUser.id === comment.user_id ?
+                            <div className={`dropdown-options ${isOpen}`}>
+                                <div
+                                    className="post-option"
+                                    onClick={(e) => {
+                                        e.stopPropagation()
+                                        setCommentContent(comment.content)
+                                        setOpenEditor('open')
+                                        setIsOpen('')
+                                    }}
+                                >
+                                    <p>Edit</p>
+                                </div>
+                                <div
+                                    className="post-option"
+                                    onClick={(e) => {
+                                        e.stopPropagation()
+                                        return deleteComment(commentId)
+                                    }}
+                                >
+                                    <p>Delete</p>
+                                </div>
                             </div>
-                            <div
-                                className="post-option"
-                                onClick={(e) => {
-                                    e.stopPropagation()
-                                    return deleteComment(commentId)
-                                }}
-                            >
-                                <p>Delete</p>
-                            </div>
-                        </div>
+                            : null
+                        }
                     </div>
                 </div>
                 <div className="comment-content">
