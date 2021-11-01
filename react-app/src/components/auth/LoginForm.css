@@ -1,6 +1,5 @@
 .view-port {
     display: flex;
-    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
     width: 100vw;
@@ -51,12 +50,12 @@
     margin-top: 50px;
 }
 
-.email-input {
+.login-email-input {
     width: 200px;
     font-size: 18px;
 }
 
-.password-input {
+.login-password-input {
     width: 200px;
     font-size: 18px;
 }

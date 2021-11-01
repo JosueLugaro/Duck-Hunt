@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import './SignUpForm.css';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -14,6 +15,17 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
+
+    let errors = [];
+
+    if (!email.includes('@')) errors.push("Please enter a valid email address");
+    if (password !== repeatPassword) errors.push("Passwords must match")
+
+    if (errors.length) {
+      setErrors(errors);
+      return null
+    }
+
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
@@ -43,51 +55,64 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
+    <div className="signup-view-port">
+      <h1>Sign Up</h1>
+      <div className="signup-form-container">
+        <form onSubmit={onSignUp} className="signup-form">
+          <div>
+            {errors.map((error, ind) => (
+              <div key={ind}>{error}</div>
+            ))}
+          </div>
+          <div>
+            <input
+              type='text'
+              name='username'
+              onChange={updateUsername}
+              value={username}
+              placeholder="Username"
+              className="signup-username input"
+            ></input>
+          </div>
+          <div>
+            <input
+              type='text'
+              name='email'
+              onChange={updateEmail}
+              value={email}
+              placeholder="Email"
+              className="signup-email input"
+            ></input>
+          </div>
+          <div>
+            <input
+              type='password'
+              name='password'
+              onChange={updatePassword}
+              value={password}
+              placeholder="Password"
+              className="signup-password input"
+            ></input>
+          </div>
+          <div>
+            <input
+              type='password'
+              name='repeat_password'
+              onChange={updateRepeatPassword}
+              value={repeatPassword}
+              required={true}
+              placeholder="Confirm Password"
+              className="signup-confirm-password input"
+            ></input>
+          </div>
+          <button type='submit' className="signup-button">Sign Up</button>
+        </form>
+          <p className="already-have">Already have an account?</p>
+          <NavLink to="/login" className="login-page-link">
+            Login!
+          </NavLink>
       </div>
-      <div>
-        <label>User Name</label>
-        <input
-          type='text'
-          name='username'
-          onChange={updateUsername}
-          value={username}
-        ></input>
-      </div>
-      <div>
-        <label>Email</label>
-        <input
-          type='text'
-          name='email'
-          onChange={updateEmail}
-          value={email}
-        ></input>
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          onChange={updatePassword}
-          value={password}
-        ></input>
-      </div>
-      <div>
-        <label>Repeat Password</label>
-        <input
-          type='password'
-          name='repeat_password'
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-        ></input>
-      </div>
-      <button type='submit'>Sign Up</button>
-    </form>
+    </div>
   );
 };
 
