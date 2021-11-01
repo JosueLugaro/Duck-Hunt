@@ -94,7 +94,7 @@ export default function NewPostForm() {
             {errors &&
                 <div>
                     {errors.map(e => (
-                        <p>{e}</p>
+                        <p key={e}>{e}</p>
                     ))}
                 </div>
             }
