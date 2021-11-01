@@ -61,7 +61,6 @@ export const deleteDuckThunk = (postId) => async (dispatch) => {
 
     if (response.ok) {
         // let data = await response.json();
-        console.log("IN CONDITIONAL")
         dispatch(deleteDuck(postId));
         // dispatch(setAllDucks(data.ducks))
         return "Duck Deleted!"
