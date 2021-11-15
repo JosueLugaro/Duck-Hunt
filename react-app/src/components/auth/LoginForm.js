@@ -109,7 +109,8 @@ const LoginForm = () => {
         </div>
       </div>
       <div className="about-container">
-        Engineered by <a href="https://github.com/JosueLugaro" target="_blank" rel="noreferrer" className="my-name">Josue Lugaro</a>
+        Engineered by Josue Lugaro (<a href="https://github.com/JosueLugaro" target="_blank" rel="noreferrer" className="my-name">Github</a>, {""}
+        <a href="https://www.linkedin.com/in/josue-e-j-lugaro-3462131b8/" target="_blank" rel="noreferrer" className="my-name">LinkedIn</a>)
       </div>
     </div>
   );
