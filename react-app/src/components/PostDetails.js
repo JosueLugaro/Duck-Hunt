@@ -47,7 +47,6 @@ export default function PostDetails({ postId }) {
                 <img src={currentDuck.image} className="duck-media" alt="duck"/>
             </div>
             <p className="duck-description">{currentDuck.description}</p>
-            {comments.length &&
                 <div className="comments-section">
                     <div className="discussion">
                         <p>Discussion</p>
@@ -69,13 +68,16 @@ export default function PostDetails({ postId }) {
                                     </div>
                         }
                     </div>
+                {comments.length ?
                     <div className="comments-container">
                         {comments.reverse().map(comment => (
                             (comment.duck_id === postId) ? <Comment commentId={comment.id} commentContent={comment.content} key={Math.floor(Math.random() * 10000)}/> :null
                         ))}
                     </div>
+                    :
+                    null
+                }
                 </div>
-            }
         </div>
     )
 }
