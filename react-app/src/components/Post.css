@@ -58,11 +58,14 @@
 
 .post-text h2 {
     font-weight: 600;
-    /* position: absolute; */
 }
 
 .post-text p {
     color: #4b587c;
+}
+
+.post-name-and-options-container {
+    display: flex;
 }
 
 .options-container {

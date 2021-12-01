@@ -46,7 +46,6 @@ export default function UpdateForm({ postId, postName, postDescription }) {
                 <h1 className="new-post-label">Update post</h1>
                 <form className="new-post-form" onSubmit={submitPost}>
                     <label>
-                        Name:
                         <input
                             type="text"
                             placeholder="What is the name of your duck?"
@@ -56,15 +55,17 @@ export default function UpdateForm({ postId, postName, postDescription }) {
                         />
                     </label>
                     <label>
-                        Description:
                         <textarea
                             value={description}
                             onChange={(e) => setDesription(e.target.value)}
                             placeholder="Describe this duck please"
+                            className="update-form-textarea"
                         />
                     </label>
 
-                    <button>Submit!</button>
+                    <button className="new-post-submit-button">
+                        <span>Submit</span>
+                    </button>
                 </form>
                 {errors &&
                     <div>

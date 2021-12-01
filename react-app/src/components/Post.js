@@ -48,41 +48,43 @@ export default function Post({ post }) {
                     {post?.image && <img src={post.image} className="post-image" alt="beautiful duck"/>}
                 </div>
                 <div className="post-text">
-                    <h2>{post.name}</h2>
+                    <div className="post-name-and-options-container">
+                        <h2>{post.name}</h2>
+                        <div className="options-container" onMouseLeave={() => setIsOpen('')}>
+                            <div
+                                className="options-icon-container"
+                                onClick={(e) => {
+                                    e.stopPropagation()
+                                    return isOpen ? setIsOpen('') : setIsOpen('open')
+                                }}
+                            >
+                                {currentUser.id === post.user_id ? <span className={`material-icons post-options-icon ${mouseOver}`}>more_horiz</span> : null}
+                            </div>
+                            <div className={`dropdown-options ${isOpen}`}>
+                                <div
+                                    className="post-option"
+                                    onClick={(e) => {
+                                        e.stopPropagation()
+                                        return openUpdateFormModal(post.id)
+                                    }}
+                                >
+                                    <p>Edit</p>
+                                </div>
+                                <div
+                                    className="post-option"
+                                    onClick={(e) => {
+                                        e.stopPropagation()
+                                        return openDeletionConfirmationModal(post.id)
+                                    }}
+                                >
+                                    <p>Delete</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <p>{post.description.slice(0, 30)}...</p>
                     <div className="comment-count">
                         <p>{commentsArr.length} {commentsArr.length === 1 ? "Comment" : "Comments"}</p>
-                    </div>
-                </div>
-                <div className="options-container" onMouseLeave={() => setIsOpen('')}>
-                    <div
-                        className="options-icon-container"
-                        onClick={(e) => {
-                            e.stopPropagation()
-                            return isOpen ? setIsOpen('') : setIsOpen('open')
-                        }}
-                    >
-                        {currentUser.id === post.user_id ? <span className={`material-icons post-options-icon ${mouseOver}`}>more_horiz</span> : null}
-                    </div>
-                    <div className={`dropdown-options ${isOpen}`}>
-                        <div
-                            className="post-option"
-                            onClick={(e) => {
-                                e.stopPropagation()
-                                return openUpdateFormModal(post.id)
-                            }}
-                        >
-                            <p>Edit</p>
-                        </div>
-                        <div
-                            className="post-option"
-                            onClick={(e) => {
-                                e.stopPropagation()
-                                return openDeletionConfirmationModal(post.id)
-                            }}
-                        >
-                            <p>Delete</p>
-                        </div>
                     </div>
                 </div>
             </div>
