@@ -56,7 +56,7 @@ export default function Comment({ commentId }) {
                     <div className="comment-username">{comment.user.username}</div>
                     <div className="options-container" onMouseLeave={() => setIsOpen('')}>
                         <div
-                            className="options-icon-container"
+                            className={`options-icon-container ${openEditor}`}
                             onClick={(e) => {
                                 e.stopPropagation()
                                 return isOpen ? setIsOpen('') : setIsOpen('open')

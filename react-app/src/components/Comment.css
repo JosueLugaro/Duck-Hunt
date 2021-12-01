@@ -22,6 +22,11 @@
     width: 950px;
 }
 
+.options-icon-container.open {
+    visibility: hidden;
+    pointer-events: none;
+}
+
 .comment-content {
     font-weight: 300;
     width: inherit;

@@ -56,7 +56,7 @@ export default function Post({ post }) {
                 </div>
                 <div className="options-container" onMouseLeave={() => setIsOpen('')}>
                     <div
-                        className={`options-icon-container ${mouseOver}`}
+                        className="options-icon-container"
                         onClick={(e) => {
                             e.stopPropagation()
                             return isOpen ? setIsOpen('') : setIsOpen('open')
