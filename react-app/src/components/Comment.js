@@ -62,7 +62,10 @@ export default function Comment({ commentId }) {
                                 return isOpen ? setIsOpen('') : setIsOpen('open')
                             }}
                         >
-                            {currentUser.id === comment.user_id ? <span className={`material-icons post-options-icon ${mouseOver}`}>more_horiz</span> : null}
+                            { currentUser.id === comment.user_id ?
+                                <span className={`material-icons post-options-icon ${mouseOver}`}>more_horiz</span>
+                                : null
+                            }
                         </div>
                         {   currentUser.id === comment.user_id ?
                             <div className={`dropdown-options ${isOpen}`}>
