@@ -1,7 +1,6 @@
 .comment {
     display: flex;
     gap: 10px;
-    /* border: 1px solid black; */
 }
 
 .comment-user-profile-pic {
@@ -21,6 +20,11 @@
 
 .everything-but-the-user-profile-pic {
     width: 950px;
+}
+
+.options-icon-container.open {
+    visibility: hidden;
+    pointer-events: none;
 }
 
 .comment-content {
