@@ -13,8 +13,12 @@
     align-items: center;
 }
 
+.new-post-form-header {
+    margin-bottom: 5%;
+}
+
 .new-post-form {
-    justify-content: space-around;
+    justify-content: space-evenly;
     height: 70%;
 }
 

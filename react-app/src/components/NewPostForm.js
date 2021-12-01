@@ -34,7 +34,7 @@ export default function NewPostForm() {
         if (name.length > 80) errors.push("Name must be 80 characters or less.");
         if (name.length === 0 || name.trim() === "") errors.push("Please provide a name.");
         if (description.length === 0 || description.trim() === "") errors.push("Please provide a description.");
-        if (!mediaFile) errors.push ("Please provide a media file(image or gif).");
+        if (!mediaFile) errors.push ("Please provide a media file(pdf, png, jpg, jpeg, or gif).");
 
         if (errors.length) {
             setErrors(errors);
@@ -61,6 +61,7 @@ export default function NewPostForm() {
 
     return (
         <div className="form-container">
+            <h1 className="new-post-form-header">New Post</h1>
             <form className="new-post-form" onSubmit={submitPost}>
                 <input
                     type="text"
