@@ -20,7 +20,7 @@
 
 .right-side-nav {
     display: flex;
-    gap: 20px;
+    height: 42px;
 }
 
 .new-post-container {
@@ -49,6 +49,7 @@
     align-items: center;
     position: relative;
     height: 100%;
+    width: 62px;
 }
 
 .user-profile-pic-container {
@@ -77,6 +78,7 @@
     transform: translateY(10px);
     gap: 10px;
     width: 150px;
+    height: 30px;
 }
 
 .action-container.hovered {
