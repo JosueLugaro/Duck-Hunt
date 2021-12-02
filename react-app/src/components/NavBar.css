@@ -21,25 +21,19 @@
 .right-side-nav {
     display: flex;
     height: 42px;
+    gap: 10px;
 }
 
 .new-post-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid #8e24aa;
     border-radius: 5px;
-    padding: 1px 5px;
     cursor: pointer;
-    background-color: #8e24aa;
-}
-
-.new-post-container:hover {
-    transform: scale(1.02);
 }
 
 .new-post {
-    color: white;
+    color: #8e24aa;
     font-weight: 600;
 }
 
@@ -67,17 +61,17 @@
 .action-container {
     position: absolute;
     background-color: white;
-    padding: 15px;
+    padding: 10px;
     top: 100%;
-    right: 50%;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    right: 20%;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.2s, transform 0.2s;
     transform: translateY(10px);
     gap: 10px;
-    width: 150px;
+    width: 100px;
     height: 30px;
 }
 
@@ -88,7 +82,8 @@
 }
 
 .dropdown-option {
-    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
 }
 
 .dropdown-option a,p {
