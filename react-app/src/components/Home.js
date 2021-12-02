@@ -25,7 +25,7 @@ function Home() {
             {posts && (
                 <div className="posts-container">
                     {posts.reverse().map(post => (
-                        <Post post={post} key={Math.floor(Math.random() * 10000)}/>
+                        <Post post={post} key={post.id}/>
                     ))}
                 </div>
             )}

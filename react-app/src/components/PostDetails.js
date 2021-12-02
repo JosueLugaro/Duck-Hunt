@@ -71,7 +71,7 @@ export default function PostDetails({ postId }) {
                 {comments.length ?
                     <div className="comments-container">
                         {comments.reverse().map(comment => (
-                            (comment.duck_id === postId) ? <Comment commentId={comment.id} commentContent={comment.content} key={Math.floor(Math.random() * 10000)}/> :null
+                            (comment.duck_id === postId) ? <Comment commentId={comment.id} commentContent={comment.content} key={comment.id}/> : null
                         ))}
                     </div>
                     :
