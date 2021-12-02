@@ -100,13 +100,14 @@ export default function Comment({ commentId }) {
                         <form onSubmit={updateComment} className="comment-edit-form">
                             <input type="text" value={commentContent} onChange={(e) => setCommentContent(e.target.value)}/>
                             <button className="comment-update-submit">Update</button>
+                            <button className="comment-update-submit" onClick={(e) => {e.preventDefault(); setOpenEditor(''); setErrors()}}>Cancel</button>
                         </form>
                         :
                         comment.content
                     }
                     { errors &&
                         errors.map(e => (
-                            <p>{e}</p>
+                            <p key={e}>{e}</p>
                         ))
                     }
                 </div>
