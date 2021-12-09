@@ -54,45 +54,42 @@ export default function Comment({ commentId }) {
             <div className="everything-but-the-user-profile-pic">
                 <div className="username-and-options-container">
                     <div className="comment-username">{comment.user.username}</div>
-                    <div className="options-container" onMouseLeave={() => setIsOpen('')}>
-                        <div
-                            className={`options-icon-container ${openEditor}`}
-                            onClick={(e) => {
-                                e.stopPropagation()
-                                return isOpen ? setIsOpen('') : setIsOpen('open')
-                            }}
-                        >
-                            { currentUser.id === comment.user_id ?
+                    {   currentUser.id === comment.user_id ?
+                        <div className="options-container" onMouseLeave={() => setIsOpen('')}>
+                            <div
+                                className={`options-icon-container ${openEditor}`}
+                                onClick={(e) => {
+                                    e.stopPropagation()
+                                    return isOpen ? setIsOpen('') : setIsOpen('open')
+                                }}
+                            >
                                 <span className={`material-icons post-options-icon ${mouseOver}`}>more_horiz</span>
-                                : null
-                            }
-                        </div>
-                        {   currentUser.id === comment.user_id ?
-                            <div className={`dropdown-options ${isOpen}`}>
-                                <div
-                                    className="post-option"
-                                    onClick={(e) => {
-                                        e.stopPropagation()
-                                        setCommentContent(comment.content)
-                                        setOpenEditor('open')
-                                        setIsOpen('')
-                                    }}
-                                >
-                                    <p>Edit</p>
-                                </div>
-                                <div
-                                    className="post-option"
-                                    onClick={(e) => {
-                                        e.stopPropagation()
-                                        return deleteComment(commentId)
-                                    }}
-                                >
-                                    <p>Delete</p>
-                                </div>
                             </div>
-                            : null
-                        }
-                    </div>
+                                <div className={`dropdown-options ${isOpen}`}>
+                                    <div
+                                        className="post-option"
+                                        onClick={(e) => {
+                                            e.stopPropagation()
+                                            setCommentContent(comment.content)
+                                            setOpenEditor('open')
+                                            setIsOpen('')
+                                        }}
+                                    >
+                                        <p>Edit</p>
+                                    </div>
+                                    <div
+                                        className="post-option"
+                                        onClick={(e) => {
+                                            e.stopPropagation()
+                                            return deleteComment(commentId)
+                                        }}
+                                    >
+                                        <p>Delete</p>
+                                    </div>
+                                </div>
+                        </div>
+                        : null
+                    }
                 </div>
                 <div className="comment-content">
                     {
